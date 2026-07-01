@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="darazGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff7530" />
+      <stop offset="100%" stop-color="#f85606" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-opacity="0.25" />
+    </filter>
+  </defs>
+  <!-- Background Rounded Rect -->
+  <rect width="512" height="512" rx="112" fill="url(#darazGrad)" />
+  
+  <!-- Outer glowing scanner border -->
+  <rect x="76" y="76" width="360" height="360" rx="64" fill="none" stroke="white" stroke-width="8" stroke-opacity="0.15" />
+  
+  <!-- Inner scan content with Cart and Barcode -->
+  <g filter="url(#shadow)">
+    <!-- Barcode lines at the top -->
+    <rect x="156" y="140" width="16" height="64" rx="4" fill="white" />
+    <rect x="188" y="140" width="8" height="64" rx="2" fill="white" />
+    <rect x="212" y="140" width="32" height="64" rx="4" fill="white" />
+    <rect x="260" y="140" width="16" height="64" rx="4" fill="white" />
+    <rect x="292" y="140" width="8" height="64" rx="2" fill="white" />
+    <rect x="316" y="140" width="40" height="64" rx="4" fill="white" />
+    
+    <!-- Red/Laser scanning light in the middle -->
+    <line x1="130" y1="220" x2="382" y2="220" stroke="#ffffff" stroke-width="10" stroke-linecap="round" stroke-opacity="0.9" />
+    <line x1="130" y1="220" x2="382" y2="220" stroke="#ffe2d1" stroke-width="4" stroke-linecap="round" />
+
+    <!-- Shopping bag/Box in the bottom half -->
+    <path d="M180,260 L332,260 L352,370 C352,380 344,388 334,388 L178,388 C168,388 160,380 160,370 L180,260 Z" fill="white" />
+    <!-- Heart shape inside the bag (Daraz inspired love shopping vibe) -->
+    <path d="M256,305 C256,305 244,290 230,290 C218,290 210,298 210,310 C210,324 232,342 256,354 C280,342 302,324 302,310 C302,298 294,290 282,290 C268,290 256,305 256,305 Z" fill="#f85606" />
+  </g>
+</svg>

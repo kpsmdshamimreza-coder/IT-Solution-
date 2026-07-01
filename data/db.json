@@ -1,0 +1,241 @@
+{
+  "products": [
+    {
+      "id": "prod_1",
+      "name": "Kingston NV2 500GB PCIe 4.0 NVMe SSD",
+      "barcode": "074061732991",
+      "category": "Storage & RAM",
+      "price": 45.00,
+      "cost": 30.00,
+      "stock": 12,
+      "minStock": 5,
+      "isEssential": true,
+      "type": "part",
+      "createdAt": "2026-06-25T10:00:00.000Z"
+    },
+    {
+      "id": "prod_2",
+      "name": "Crucial 8GB DDR4 3200MHz Laptop RAM",
+      "barcode": "064952890032",
+      "category": "Storage & RAM",
+      "price": 28.00,
+      "cost": 18.00,
+      "stock": 15,
+      "minStock": 6,
+      "isEssential": true,
+      "type": "part",
+      "createdAt": "2026-06-25T10:15:00.000Z"
+    },
+    {
+      "id": "prod_3",
+      "name": "15.6 Inch Slim Laptop LED Screen (30-pin IPS)",
+      "barcode": "081001248011",
+      "category": "Screens & Displays",
+      "price": 85.00,
+      "cost": 55.00,
+      "stock": 3,
+      "minStock": 4,
+      "isEssential": true,
+      "type": "part",
+      "createdAt": "2026-06-25T10:30:00.000Z"
+    },
+    {
+      "id": "prod_4",
+      "name": "Noctua NT-H1 Premium Thermal Paste (3.5g)",
+      "barcode": "090012354921",
+      "category": "Supplies & Cooling",
+      "price": 12.99,
+      "cost": 6.50,
+      "stock": 25,
+      "minStock": 8,
+      "isEssential": false,
+      "type": "part",
+      "createdAt": "2026-06-25T11:00:00.000Z"
+    },
+    {
+      "id": "prod_5",
+      "name": "65W USB-C PD Smart Adapter Charger",
+      "barcode": "019485012489",
+      "category": "Power & Battery",
+      "price": 35.00,
+      "cost": 19.00,
+      "stock": 8,
+      "minStock": 5,
+      "isEssential": true,
+      "type": "part",
+      "createdAt": "2026-06-25T11:15:00.000Z"
+    },
+    {
+      "id": "prod_6",
+      "name": "Thermal Paste Re-pasting & Dust Cleaning Service",
+      "barcode": "srv_thermal_dust",
+      "category": "Servicing & Labor",
+      "price": 25.00,
+      "cost": 5.00,
+      "stock": 9999,
+      "minStock": 0,
+      "isEssential": false,
+      "type": "service",
+      "createdAt": "2026-06-25T12:00:00.000Z"
+    },
+    {
+      "id": "prod_7",
+      "name": "Windows OS Installation & Complete Driver Setup",
+      "barcode": "srv_windows_install",
+      "category": "Servicing & Labor",
+      "price": 30.00,
+      "cost": 0.00,
+      "stock": 9999,
+      "minStock": 0,
+      "isEssential": false,
+      "type": "service",
+      "createdAt": "2026-06-25T12:30:00.000Z"
+    },
+    {
+      "id": "prod_8",
+      "name": "Broken Laptop Hinge Repair & Body Welding",
+      "barcode": "srv_hinge_repair",
+      "category": "Servicing & Labor",
+      "price": 40.00,
+      "cost": 10.00,
+      "stock": 9999,
+      "minStock": 0,
+      "isEssential": false,
+      "type": "service",
+      "createdAt": "2026-06-25T12:45:00.000Z"
+    },
+    {
+      "id": "prod_9",
+      "name": "BIOS Chip Flashing & Password Unlock Service",
+      "barcode": "srv_bios_flash",
+      "category": "Servicing & Labor",
+      "price": 50.00,
+      "cost": 5.00,
+      "stock": 9999,
+      "minStock": 0,
+      "isEssential": false,
+      "type": "service",
+      "createdAt": "2026-06-26T09:00:00.000Z"
+    },
+    {
+      "id": "prod_10",
+      "name": "Universal Multi-brand Laptop Keyboard (Chiclet)",
+      "barcode": "084123512398",
+      "category": "Keyboards & Mice",
+      "price": 24.00,
+      "cost": 12.00,
+      "stock": 1,
+      "minStock": 3,
+      "isEssential": false,
+      "type": "part",
+      "createdAt": "2026-06-26T09:15:00.000Z"
+    },
+    {
+      "id": "prod_11",
+      "name": "Logitech M185 Wireless Optical Mouse",
+      "barcode": "097855088825",
+      "category": "Keyboards & Mice",
+      "price": 18.00,
+      "cost": 10.00,
+      "stock": 14,
+      "minStock": 5,
+      "isEssential": false,
+      "type": "part",
+      "createdAt": "2026-06-26T09:30:00.000Z"
+    }
+  ],
+  "sales": [
+    {
+      "id": "sale_1",
+      "timestamp": "2026-06-28T14:22:10.000Z",
+      "items": [
+        {
+          "productId": "prod_1",
+          "name": "Kingston NV2 500GB PCIe 4.0 NVMe SSD",
+          "barcode": "074061732991",
+          "quantity": 1,
+          "price": 45.00,
+          "cost": 30.00
+        },
+        {
+          "productId": "prod_6",
+          "name": "Thermal Paste Re-pasting & Dust Cleaning Service",
+          "barcode": "srv_thermal_dust",
+          "quantity": 1,
+          "price": 25.00,
+          "cost": 5.00
+        }
+      ],
+      "totalAmount": 70.00,
+      "totalProfit": 35.00,
+      "paymentMethod": "cash"
+    },
+    {
+      "id": "sale_2",
+      "timestamp": "2026-06-28T16:45:30.000Z",
+      "items": [
+        {
+          "productId": "prod_5",
+          "name": "65W USB-C PD Smart Adapter Charger",
+          "barcode": "019485012489",
+          "quantity": 2,
+          "price": 35.00,
+          "cost": 19.00
+        }
+      ],
+      "totalAmount": 70.00,
+      "totalProfit": 32.00,
+      "paymentMethod": "card"
+    },
+    {
+      "id": "sale_3",
+      "timestamp": "2026-06-29T11:10:00.000Z",
+      "items": [
+        {
+          "productId": "prod_2",
+          "name": "Crucial 8GB DDR4 3200MHz Laptop RAM",
+          "barcode": "064952890032",
+          "quantity": 1,
+          "price": 28.00,
+          "cost": 18.00
+        },
+        {
+          "productId": "prod_7",
+          "name": "Windows OS Installation & Complete Driver Setup",
+          "barcode": "srv_windows_install",
+          "quantity": 1,
+          "price": 30.00,
+          "cost": 0.00
+        }
+      ],
+      "totalAmount": 58.00,
+      "totalProfit": 40.00,
+      "paymentMethod": "mobile_pay"
+    },
+    {
+      "id": "sale_4",
+      "timestamp": "2026-06-30T10:05:00.000Z",
+      "items": [
+        {
+          "productId": "prod_3",
+          "name": "15.6 Inch Slim Laptop LED Screen (30-pin IPS)",
+          "barcode": "081001248011",
+          "quantity": 1,
+          "price": 85.00,
+          "cost": 55.00
+        },
+        {
+          "productId": "prod_8",
+          "name": "Broken Laptop Hinge Repair & Body Welding",
+          "barcode": "srv_hinge_repair",
+          "quantity": 1,
+          "price": 40.00,
+          "cost": 10.00
+        }
+      ],
+      "totalAmount": 125.00,
+      "totalProfit": 60.00,
+      "paymentMethod": "cash"
+    }
+  ]
+}

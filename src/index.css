@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Roboto", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Overriding indigo with Daraz brand orange palette */
+  --color-indigo-50: #fff2ea;
+  --color-indigo-100: #ffe2d1;
+  --color-indigo-200: #ffc4a3;
+  --color-indigo-300: #ffa16e;
+  --color-indigo-400: #ff7530;
+  --color-indigo-500: #f85606;
+  --color-indigo-600: #f85606;
+  --color-indigo-750: #d34600;
+  --color-indigo-700: #d34600;
+  --color-indigo-800: #ad3500;
+  --color-indigo-900: #7a2200;
+  --color-indigo-950: #420f00;
+
+  /* Overriding general slate-50 background with Daraz website off-white background (#eff0f5) */
+  --color-slate-50: #eff0f5;
+}
+
+@layer utilities {
+  /* Keyframe animations */
+  @keyframes scaleIn {
+    from {
+      transform: scale(0.96);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  /* Scrollbar hiding utilities */
+  .scrollbar-none::-webkit-scrollbar {
+    display: none !important;
+  }
+  .scrollbar-none {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+  }
+}
+
+/* Professional Print Media Style Override */
+@media print {
+  /* Hide everything else */
+  body {
+    background-color: white !important;
+    color: black !important;
+  }
+  #root, .fixed, .modal-backdrop, button, header, nav, aside {
+    display: none !important;
+  }
+  /* Show only the invoice */
+  .printable-invoice-container {
+    display: block !important;
+    position: fixed !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 24px !important;
+    background: white !important;
+    border: none !important;
+    box-shadow: none !important;
+    z-index: 9999999 !important;
+    overflow: visible !important;
+  }
+  .printable-invoice-container * {
+    visibility: visible !important;
+    color: black !important;
+  }
+}
