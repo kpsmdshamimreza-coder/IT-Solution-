@@ -1,9 +1,9 @@
-const CACHE_NAME = 'akta-pos-v1';
+const CACHE_NAME = 'it-solutions-pos-v1';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
   '/manifest.json',
-  '/icon.svg'
+  '/logo.jpg'
 ];
 
 // Install Event

@@ -1,9 +1,12 @@
 import express from "express";
 import path from "path";
 import fs from "fs/promises";
+import fsSync from "fs";
 import { createServer as createViteServer } from "vite";
 import { GoogleGenAI, Type } from "@google/genai";
 import dotenv from "dotenv";
+import { initializeApp } from "firebase/app";
+import { getFirestore, collection, getDocs, doc, setDoc, deleteDoc, writeBatch, limit, query } from "firebase/firestore";
 
 dotenv.config();
 
@@ -11,26 +14,127 @@ const app = express();
 const PORT = 3000;
 const DB_PATH = path.join(process.cwd(), "data", "db.json");
 
+// Initialize Firebase Client with Firestore support
+let db: any;
+try {
+  const configPath = path.join(process.cwd(), "firebase-applet-config.json");
+  if (fsSync.existsSync(configPath)) {
+    const config = JSON.parse(fsSync.readFileSync(configPath, "utf-8"));
+    const firebaseApp = initializeApp(config);
+    db = getFirestore(firebaseApp, config.firestoreDatabaseId);
+    console.log("Firebase client initialized successfully with database id:", config.firestoreDatabaseId);
+  } else {
+    console.warn("firebase-applet-config.json not found.");
+  }
+} catch (error) {
+  console.error("Error initializing Firebase Client:", error);
+}
+
 app.use(express.json());
 
-// Helper to read database
+// Helper to read database (tries Firestore first, then falls back to local file)
 async function readDB() {
+  if (db) {
+    try {
+      const productsSnap = await getDocs(collection(db, "products"));
+      const products = productsSnap.docs.map((doc: any) => ({ id: doc.id, ...doc.data() }));
+
+      const salesSnap = await getDocs(collection(db, "sales"));
+      const sales = salesSnap.docs.map((doc: any) => ({ id: doc.id, ...doc.data() }));
+
+      return { products, sales };
+    } catch (error) {
+      console.error("Error reading from Firestore. Falling back to local file:", error);
+    }
+  }
+
   try {
     const data = await fs.readFile(DB_PATH, "utf-8");
     return JSON.parse(data);
   } catch (error) {
-    console.error("Error reading database:", error);
+    console.error("Error reading local database file:", error);
     return { products: [], sales: [] };
   }
 }
 
-// Helper to write database
+// Helper to write database (writes to Firestore, falls back to local file)
 async function writeDB(data: any) {
+  if (db) {
+    try {
+      const batch = writeBatch(db);
+
+      // Sync products collection
+      const currentProductsSnap = await getDocs(collection(db, "products"));
+      const currentProductIds = new Set(currentProductsSnap.docs.map((doc: any) => doc.id));
+      const newProductIds = new Set(data.products.map((p: any) => p.id));
+
+      // Delete removed products
+      for (const docId of currentProductIds) {
+        if (!newProductIds.has(docId)) {
+          batch.delete(doc(db, "products", docId));
+        }
+      }
+      // Set/Update current products
+      for (const p of data.products) {
+        const docRef = doc(db, "products", p.id);
+        batch.set(docRef, p);
+      }
+
+      // Sync sales collection
+      const currentSalesSnap = await getDocs(collection(db, "sales"));
+      const currentSaleIds = new Set(currentSalesSnap.docs.map((doc: any) => doc.id));
+      const newSaleIds = new Set(data.sales.map((s: any) => s.id));
+
+      // Delete removed sales
+      for (const docId of currentSaleIds) {
+        if (!newSaleIds.has(docId)) {
+          batch.delete(doc(db, "sales", docId));
+        }
+      }
+      // Set/Update current sales
+      for (const s of data.sales) {
+        const docRef = doc(db, "sales", s.id);
+        batch.set(docRef, s);
+      }
+
+      await batch.commit();
+      console.log("Firestore successfully synchronized.");
+      return;
+    } catch (error) {
+      console.error("Error writing to Firestore. Synchronizing to local file as fallback:", error);
+    }
+  }
+
   try {
     await fs.mkdir(path.dirname(DB_PATH), { recursive: true });
     await fs.writeFile(DB_PATH, JSON.stringify(data, null, 2), "utf-8");
   } catch (error) {
-    console.error("Error writing database:", error);
+    console.error("Error writing local database:", error);
+  }
+}
+
+// Auto migration helper to seed Firestore when empty
+async function seedFirestoreIfEmpty() {
+  if (!db) return;
+  try {
+    const q = query(collection(db, "products"), limit(1));
+    const productsSnap = await getDocs(q);
+    if (productsSnap.empty) {
+      console.log("Firestore collections are empty. Seeding/Migrating existing local database to Firestore...");
+      const localDataStr = await fs.readFile(DB_PATH, "utf-8").catch(() => null);
+      if (localDataStr) {
+        const localData = JSON.parse(localDataStr);
+        if (localData.products && localData.products.length > 0) {
+          console.log(`Migrating ${localData.products.length} products and ${localData.sales?.length || 0} sales...`);
+          await writeDB(localData);
+          console.log("Database migration to Firestore completed successfully.");
+        }
+      }
+    } else {
+      console.log("Firestore already contains data. Migration bypassed.");
+    }
+  } catch (err) {
+    console.error("Failed to seed/migrate Firestore:", err);
   }
 }
 
@@ -559,6 +663,9 @@ Respond ONLY with the JSON array, no conversational prefixes, no markdown format
 // --- Development and Production Static Asset Serving ---
 
 async function startServer() {
+  // Run initial Firestore seeding and data migration from local db.json
+  await seedFirestoreIfEmpty();
+
   if (process.env.NODE_ENV !== "production") {
     const vite = await createViteServer({
       server: { middlewareMode: true },

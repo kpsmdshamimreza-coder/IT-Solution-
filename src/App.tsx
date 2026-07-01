@@ -96,15 +96,15 @@ export default function App() {
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 rounded-xl overflow-hidden border border-slate-200 bg-white shrink-0 p-1.5 flex items-center justify-center shadow-md">
                 <img 
-                  src="/icon.svg" 
-                  alt="Akta Inventory Logo" 
+                  src="/logo.jpg" 
+                  alt="IT Solutions Logo" 
                   className="w-full h-full object-contain"
                   referrerPolicy="no-referrer"
                 />
               </div>
               <div>
                 <div className="flex items-center space-x-1.5">
-                  <h1 className="font-bold text-slate-950 text-base tracking-tight">Akta Inventory</h1>
+                  <h1 className="font-bold text-slate-950 text-base tracking-tight">IT Solutions</h1>
                   <span className="text-[10px] font-extrabold text-indigo-600 bg-indigo-50 border border-indigo-100 px-1.5 py-0.2 rounded-full font-mono uppercase">
                     v1.0
                   </span>

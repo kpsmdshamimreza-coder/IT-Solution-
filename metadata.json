@@ -1,5 +1,5 @@
 {
-  "name": "Akta Inventory",
+  "name": "IT Solutions",
   "description": "Smart retail inventory software with interactive barcode scanning, real-time sales reporting, automated low-stock alerts, and AI-powered trending product categories.",
   "requestFramePermissions": ["camera"],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]

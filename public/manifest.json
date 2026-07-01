@@ -1,6 +1,6 @@
 {
-  "name": "Akta Inventory - Smart POS & Barcode Scanner",
-  "short_name": "Akta POS",
+  "name": "IT Solutions - Smart POS & Barcode Scanner",
+  "short_name": "IT Solutions",
   "description": "Smart retail inventory software with interactive barcode scanning, real-time sales reporting, automated low-stock alerts, and AI-powered insights.",
   "start_url": "/",
   "display": "standalone",
@@ -10,21 +10,21 @@
   "scope": "/",
   "icons": [
     {
-      "src": "/icon.svg",
+      "src": "/logo.jpg",
       "sizes": "192x192",
-      "type": "image/svg+xml",
+      "type": "image/jpeg",
       "purpose": "any"
     },
     {
-      "src": "/icon.svg",
+      "src": "/logo.jpg",
       "sizes": "512x512",
-      "type": "image/svg+xml",
+      "type": "image/jpeg",
       "purpose": "any"
     },
     {
-      "src": "/icon.svg",
+      "src": "/logo.jpg",
       "sizes": "any",
-      "type": "image/svg+xml",
+      "type": "image/jpeg",
       "purpose": "maskable"
     }
   ]

@@ -1,0 +1,49 @@
+{
+  "entities": {
+    "Product": {
+      "title": "Product",
+      "description": "Product inventory item",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "barcode": { "type": "string" },
+        "category": { "type": "string" },
+        "price": { "type": "number" },
+        "cost": { "type": "number" },
+        "stock": { "type": "number" },
+        "minStock": { "type": "number" },
+        "isEssential": { "type": "boolean" },
+        "type": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "description": { "type": "string" },
+        "warranty": { "type": "string" }
+      },
+      "required": ["id", "name", "barcode", "category", "price", "cost", "stock", "minStock", "isEssential", "type", "createdAt"]
+    },
+    "Sale": {
+      "title": "Sale",
+      "description": "Sales record",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "timestamp": { "type": "string" },
+        "items": { "type": "array" },
+        "totalAmount": { "type": "number" },
+        "totalProfit": { "type": "number" },
+        "paymentMethod": { "type": "string" }
+      },
+      "required": ["id", "timestamp", "items", "totalAmount", "totalProfit", "paymentMethod"]
+    }
+  },
+  "firestore": {
+    "products/{productId}": {
+      "schema": "Product",
+      "description": "Collection of inventory products"
+    },
+    "sales/{saleId}": {
+      "schema": "Sale",
+      "description": "Collection of sale transactions"
+    }
+  }
+}
